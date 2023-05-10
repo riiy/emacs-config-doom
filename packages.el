@@ -50,3 +50,5 @@
 ;(unpin! t)
 (package! pyim)
 (package! pyim-wbdict)
+
+(unpin! org-roam)

@@ -44,14 +44,14 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/org/roam/"))
-  ;; :bind (("C-c n l" . org-roam-buffer-toggle)
-         ;; ("C-c n f" . org-roam-node-find)
-         ;; ("C-c n g" . org-roam-graph)
-         ;; ("C-c n i" . org-roam-node-insert)
-         ;; ("C-c n c" . org-roam-capture)
+  (org-roam-directory (file-truename "~/org-roam/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
          ;; Dailies
-         ;; ("C-c n j" . org-roam-dailies-capture-today))
+         ("C-c n j" . org-roam-dailies-capture-today))
   :config
   ;; If you're using a vertical completion framework, you might want a more informative completion interface
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -59,6 +59,19 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 
+(setq find-file-visit-truename t)
+;; for org-roam-buffer-toggle
+;; Use side-window like V1
+;; This can take advantage of slots available with it
+(add-to-list 'display-buffer-alist
+    '("\\*org-roam\\*"
+        (display-buffer-in-side-window)
+        (side . right)
+        (slot . 0)
+        (window-width . 0.25)
+        (preserve-size . (t . nil))
+        (window-parameters . ((no-other-window . t)
+                              (no-delete-other-windows . t)))))
 (use-package! org-roam-protocol
   :after org-protocol)
 
@@ -88,38 +101,6 @@
         )
       )
 
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
-
 (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 ;; input
 (setq default-input-method "pyim")
@@ -136,5 +117,4 @@
           eldoc-echo-area-display-truncation-message nil)
     (set-face-attribute 'eglot-highlight-symbol-face nil
                         :background "#c3d7ff")
-
     ))
