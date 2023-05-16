@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -118,3 +118,42 @@
     (set-face-attribute 'eglot-highlight-symbol-face nil
                         :background "#c3d7ff")
     ))
+
+(setq +mu4e-backend 'offlineimap)
+(setq mu4e-root-maildir "~/.mail")
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;; Each path is relative to the path of the maildir you passed to mu
+(set-email-account! "Tencent"
+  '((mu4e-sent-folder       . "/Tencent/Sent Messages")
+    (mu4e-drafts-folder     . "/Tencent/Drafts")
+    (mu4e-trash-folder      . "/Tencent/Junk")
+    (mu4e-refile-folder     . "/Tencent/INBOX")
+    (mu4e-compose-signature . "---\nYours truly\nBo Zhou"))
+  t)
+
+
+(require 'smtpmail)
+(remove-hook! 'mu4e-compose-mode-hook #'org-mu4e-compose-org-mode)
+(require 'auth-source);; probably not necessary
+(setq auth-sources '("~/.authinfo" "~/.authinfo.gpg"))
+;;(customize-variable 'auth-sources) ;; optional, do it once
+
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq smtpmail-debug-info t)
+(setq smtpmail-debug-verb t)
+
+
+(setq user-mail-address "bozhou_0728@qq.com")
+(setq user-full-name "Zhou Bo")
+
+(setq mu4e-confirm-quit nil
+ message-send-mail-function 'smtpmail-send-it
+ smtpmail-smtp-user "bozhou_0728@qq.com"
+      smtpmail-smtp-server "smtp.qq.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
+
+  (setq mu4e-bookmarks
+        '(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)))
+
+(setq mu4e-headers-buffer-name "*mu4e-headers*")
