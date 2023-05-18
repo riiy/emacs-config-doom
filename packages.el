@@ -52,3 +52,5 @@
 (package! pyim-wbdict)
 
 (unpin! org-roam)
+
+(package! mu4e-alert :disable t)

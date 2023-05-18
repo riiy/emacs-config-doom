@@ -118,3 +118,44 @@
     (set-face-attribute 'eglot-highlight-symbol-face nil
                         :background "#c3d7ff")
     ))
+
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;;(require 'mu4e)
+;;(require 'mu4e-contrib)
+(require 'smtpmail)
+(require 'auth-source);; probably not necessary
+(setq +mu4e-backend 'offlineimap)
+(setq mu4e-root-maildir "~/Mail")
+;; Each path is relative to the path of the maildir you passed to mu
+(set-email-account! "Tencent"
+  '((mu4e-sent-folder       . "/Sent Messages")
+    (mu4e-drafts-folder     . "/Drafts")
+    (mu4e-trash-folder      . "/Junk")
+    (mu4e-refile-folder     . "/INBOX")
+    (mu4e-compose-signature . "---\nYours truly\nBo Zhou"))
+  t)
+
+
+(remove-hook! 'mu4e-compose-mode-hook #'org-mu4e-compose-org-mode)
+(setq auth-sources '("~/.authinfo" "~/.authinfo.gpg"))
+;;(customize-variable 'auth-sources) ;; optional, do it once
+
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq smtpmail-debug-info t)
+(setq smtpmail-debug-verb t)
+
+
+(setq user-mail-address "bozhou_0728@qq.com")
+(setq user-full-name "Zhou Bo")
+
+(setq mu4e-confirm-quit nil
+ message-send-mail-function 'smtpmail-send-it
+ smtpmail-smtp-user "bozhou_0728@qq.com"
+      smtpmail-smtp-server "smtp.qq.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
+
+  (setq mu4e-bookmarks
+        '(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)))
+
+(setq mu4e-headers-buffer-name "*mu4e-headers*")
