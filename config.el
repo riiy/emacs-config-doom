@@ -156,4 +156,17 @@
   (setq mu4e-bookmarks
         '(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)))
 
-(setq mu4e-headers-buffer-name "*mu4e-headers*")
+;; (setq mu4e-headers-buffer-name "*mu4e-headers*")
+
+(require 'org-habit)
+(setq org-habit-show-done-always-green t)
+;;; 减少显示天数，使其可以放在任务条的左边
+(setq org-habit-graph-column 1)
+(setq org-habit-preceding-days 10)
+(setq org-habit-following-days 2)
+;;; 恢复默认日历行为
+(setq org-habit-show-habits-only-for-today nil)
+(let ((agenda-sorting-strategy
+       (assoc 'agenda org-agenda-sorting-strategy)))
+  (setcdr agenda-sorting-strategy
+          (remove 'habit-down (cdr agenda-sorting-strategy))))
