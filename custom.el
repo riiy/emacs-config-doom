@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(google-translate yasnippet-classic-snippets yasnippet mu4easy smtpmail-multi mu4e-maildirs-extension magit-section anaconda-mode))
+   '(yasnippet-classic-snippets yasnippet mu4easy smtpmail-multi mu4e-maildirs-extension magit-section anaconda-mode))
  '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
