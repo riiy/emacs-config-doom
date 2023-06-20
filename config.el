@@ -68,6 +68,9 @@
     (org-update-statistics-cookies t)))
 (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
 (provide 'org-subtask-reset)
+(setq org-log-done 'time)
+;; (setq org-log-done 'note)
+(setq org-closed-keep-when-no-todo t)
 
 ;; org-roam
 (use-package org-roam
