@@ -188,3 +188,8 @@
 (global-set-key "\C-cT" 'google-translate-query-translate)
 (setq google-translate-default-source-language "en")
 (setq google-translate-default-target-language "zh-CN")
+(setq google-translate-backend-method 'curl)
+(setq google-translate-base-url
+      "https://translate.google.com/translate_a/single"
+      google-translate--tkk-url
+      "https://translate.google.com/")
