@@ -56,3 +56,5 @@
     (set-face-attribute 'eglot-highlight-symbol-face nil
                         :background "#c3d7ff")
     ))
+;; c/c++ language
+(set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
