@@ -201,3 +201,10 @@
 
 ;; rss
 (add-hook 'elfeed-search-mode-hook #'elfeed-update)
+(setq url-proxy-services '(("http" . "127.0.0.1:8118")
+                           ("https" . "127.0.0.1:8118")
+                           ("no_proxy" . "^.*(?!translate\\.google\\.com).*$")))
+
+;; in $DOOMDIR/config.el
+(setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
+(setq +python-jupyter-repl-args '("--simple-prompt"))
