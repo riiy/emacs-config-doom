@@ -52,6 +52,5 @@
 (package! pyim-wbdict)
 
 (unpin! org-roam)
-(unpin! eglot)
 
 (package! google-translate)
