@@ -132,24 +132,12 @@
       )
 
 ;; c/c++ language
-(set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
+;; (set-eglot-client! 'cc-mode '("clangd" "-j=3" "--clang-tidy"))
 
 ;; input
 (setq default-input-method "pyim")
 (setq pyim-default-scheme 'wubi)
 (pyim-wbdict-v86-enable)
-
-;; eglot
-(use-package eglot
-  :defer t
-  :commands (eglot-ensure my/rust-expand-macro)
-  :config
-  (progn
-    (setq eldoc-echo-area-use-multiline-p 3
-          eldoc-echo-area-display-truncation-message nil)
-    (set-face-attribute 'eglot-highlight-symbol-face nil
-                        :background "#c3d7ff")
-    ))
 
 ;; email
 (setq +mu4e-backend 'offlineimap)
@@ -206,5 +194,5 @@
                            ("no_proxy" . "^.*(?!translate\\.google\\.com).*$")))
 
 ;; in $DOOMDIR/config.el
-(setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
-(setq +python-jupyter-repl-args '("--simple-prompt"))
+;; (setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
+;; (setq +python-jupyter-repl-args '("--simple-prompt"))
