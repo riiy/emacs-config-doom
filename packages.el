@@ -54,3 +54,4 @@
 (unpin! org-roam)
 
 (package! google-translate)
+(package! w3m)
